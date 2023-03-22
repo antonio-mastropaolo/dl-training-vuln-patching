@@ -1,1 +1,4 @@
+# How the Training Procedure Impacts the Performance of\\Deep Learning-based Vulnerability Patching
+
 Deep learning models that generate solutions for patching vulnerability have been widely used. However, the challenge is the limited availability of large datasets of patches for these models to learn from. To address this, researchers suggest starting with pre-trained models that possess general knowledge of programming languages or related tasks like bug fixing (See CodeT5 and VRepair). An alternative method, prompt-tuning, is also suggested to enhance fine-tuning instances to better exploit the pre-training knowledge. Despite the many attempts to automate vulnerability patching, there are no studies exploring the impact of different training methods on deep learning models' performance in this area. In this work we aim to fill this gap by comparing self-supervised and supervised pre-training solutions and experimenting with different prompt-tuning approaches. 
+
