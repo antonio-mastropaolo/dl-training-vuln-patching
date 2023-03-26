@@ -101,7 +101,8 @@ python3.9 vulrepair_main_prompt.py
 
 #### Datasets :paperclip:
 
-The datasets for fine-tuning the models are stored on GDrive <a href="https://drive.google.com/drive/folders/1-3eLMTVLx8evwC9ROUBq9q-IdYHuy_WK?usp=sharing">here</a>
+* The datasets for fine-tuning the models are stored on GDrive <a href="https://drive.google.com/drive/folders/1-3eLMTVLx8evwC9ROUBq9q-IdYHuy_WK?usp=sharing">here</a>
+* The dataset for supervised pre-training (Chen et al.) is available here <a href="https://drive.google.com/drive/folders/1DtaNb2FaxGiei8DI1NGy4X9tYlYsxtp3?usp=sharing">here</a>
 
 #### Models :bar_chart:
 * <a href="https://drive.google.com/drive/folders/1pU0iDzd9sEigLKNlefsS2GytYRA1kvRo?usp=sharing">T5-base No-Pretraining (M0)</a>
