@@ -47,11 +47,11 @@ res=data.frame(res)
 res$Wilcoxon.p=p.adjust(res$Wilcoxon.p, method="holm")
 print(res)
 
-#############################################################
+# #############################################################
 
 
 
-#############################################################
+# #############################################################
 res=list(Wilcoxon.p=c(), Wilcoxon.estimate=c())
 
 res$Wilcoxon.p=(wilcox.test(vulrepair$beam_1,ss_hard_prompt$hard_1_beam_1,alternative="two.side",paired=TRUE)$p.value)
@@ -71,16 +71,16 @@ res=data.frame(res)
 res$Wilcoxon.p=p.adjust(res$Wilcoxon.p, method="holm")
 print(res)
 
-#############################################################
+# #############################################################
 
-#############################################################
+# #############################################################
 res=list(Wilcoxon.p=c(), Wilcoxon.estimate=c())
 
-res$Wilcoxon.p=(wilcox.test(ss_bf_soft_prompt$soft_1_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
-res$Wilcoxon.p=(wilcox.test(ss_bf_soft_prompt$soft_2_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
-res$Wilcoxon.p=(wilcox.test(ss_bf_soft_prompt$soft_3_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
-res$Wilcoxon.p=(wilcox.test(ss_bf_soft_prompt$soft_4_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
-res$Wilcoxon.p=(wilcox.test(ss_bf_soft_prompt$soft_5_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
+res$Wilcoxon.p=append(res$Wilcoxon.p, wilcox.test(ss_bf_soft_prompt$soft_1_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
+res$Wilcoxon.p=append(res$Wilcoxon.p, wilcox.test(ss_bf_soft_prompt$soft_2_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
+res$Wilcoxon.p=append(res$Wilcoxon.p, wilcox.test(ss_bf_soft_prompt$soft_3_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
+res$Wilcoxon.p=append(res$Wilcoxon.p, wilcox.test(ss_bf_soft_prompt$soft_4_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
+res$Wilcoxon.p=append(res$Wilcoxon.p, wilcox.test(ss_bf_soft_prompt$soft_5_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
 
 res$Wilcoxon.estimate=append(res$Wilcoxon.estimate, cliff.delta(ss_bf_soft_prompt$soft_1_beam_1,ss_bf_vuln$beam_1)$estimate)
 res$Wilcoxon.estimate=append(res$Wilcoxon.estimate, cliff.delta(ss_bf_soft_prompt$soft_2_beam_1,ss_bf_vuln$beam_1)$estimate)
@@ -98,13 +98,15 @@ print(res)
 
 res=list(Wilcoxon.p=c(), Wilcoxon.estimate=c())
 
-res$Wilcoxon.p=(wilcox.test(ss_bf_hard_prompt$hard_1_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
-res$Wilcoxon.p=(wilcox.test(ss_bf_hard_prompt$hard_2_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
-res$Wilcoxon.p=(wilcox.test(ss_bf_hard_prompt$hard_3_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
-res$Wilcoxon.p=(wilcox.test(ss_bf_hard_prompt$hard_4_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
-res$Wilcoxon.p=(wilcox.test(ss_bf_hard_prompt$hard_5_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
+res$Wilcoxon.p=(wilcox.test(ss_bf_vuln$beam_1,ss_bf_hard_prompt$hard_1_beam_1,alternative="two.side",paired=TRUE)$p.value)
+res$Wilcoxon.p=append(res$Wilcoxon.p, wilcox.test(ss_bf_hard_prompt$hard_2_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
+res$Wilcoxon.p=append(res$Wilcoxon.p, wilcox.test(ss_bf_hard_prompt$hard_3_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
+res$Wilcoxon.p=append(res$Wilcoxon.p, wilcox.test(ss_bf_hard_prompt$hard_4_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
+res$Wilcoxon.p=append(res$Wilcoxon.p, wilcox.test(ss_bf_hard_prompt$hard_5_beam_1,ss_bf_vuln$beam_1,alternative="two.side",paired=TRUE)$p.value)
 
-res$Wilcoxon.estimate=append(res$Wilcoxon.estimate, cliff.delta(ss_bf_hard_prompt$hard_1_beam_1,ss_bf_vuln$beam_1)$estimate)
+
+
+res$Wilcoxon.estimate=cliff.delta(ss_bf_vuln$beam_1,ss_bf_hard_prompt$hard_1_beam_1)$estimate
 res$Wilcoxon.estimate=append(res$Wilcoxon.estimate, cliff.delta(ss_bf_hard_prompt$hard_2_beam_1,ss_bf_vuln$beam_1)$estimate)
 res$Wilcoxon.estimate=append(res$Wilcoxon.estimate, cliff.delta(ss_bf_hard_prompt$hard_3_beam_1,ss_bf_vuln$beam_1)$estimate)
 res$Wilcoxon.estimate=append(res$Wilcoxon.estimate, cliff.delta(ss_bf_hard_prompt$hard_4_beam_1,ss_bf_vuln$beam_1)$estimate)
