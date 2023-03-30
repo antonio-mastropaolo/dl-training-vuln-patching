@@ -20,7 +20,7 @@ Data statistics of the datasets are shown in the below table:
 
 #### Fine-tuning  
 
-*The following will be starting a fine-tuning procedure using the classic supervised approach*
+*The following starts a fine-tuning procedure using the classic supervised approach*
 
 ##### Training
 
@@ -122,6 +122,6 @@ python3.9 vulrepair_main_prompt.py
 * <a href="https://drive.google.com/drive/folders/1i0f1SzhfFYybWt79LnGais83YMYYe_rC?usp=sharing">Self-supervised + Fine-tuning on Bug-Fixing + prompt-tuning on vulnerability (M4)</a>
 
 
-#### Results:  :open_file_folder:
+#### Additional:  :page_facing_up:
 
 * <a href="https://drive.google.com/drive/folders/1q5xqMNw3boRGqnSq5Lk0dAbjbtrSyQzM?usp=sharing">Data for Statistical Tests (i.e., McNemar and Wilcoxon)</a>
