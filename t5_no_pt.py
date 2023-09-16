@@ -55,7 +55,7 @@ class TextDataset(Dataset):
             labels = val_data["target"].tolist()
         elif file_type == "test":
             #data = datasets.load_dataset("MickyMike/cvefixes_bigvul", split="test")
-            data = pd.read_csv('data_cleaned/with-cwe/test_cwe_name.csv')
+            data = pd.read_csv('../data_cleaned/with-cwe/test_cwe_name.csv')
             sources = data["source"]
             labels = data["target"]
         self.examples = []
@@ -307,7 +307,7 @@ def test(args, model, tokenizer, test_dataset, best_threshold=0.5):
     df['target'] = groundtruth_sentence
     df["raw_predictions"] = raw_predictions
     df["correctly_predicted"] = accuracy
-    df.to_csv("./predictions/predictions-beam-{}.csv".format(args.num_beams))
+    df.to_csv("./predictions/no-pretraining/predictions-beam-{}.csv".format(args.num_beams))
 
 def main():
     parser = argparse.ArgumentParser()
@@ -384,7 +384,23 @@ def main():
     tokenizer.add_tokens(["<S2SV_StartBug>", "<S2SV_EndBug>", "<S2SV_blank>", "<S2SV_ModStart>", "<S2SV_ModEnd>"])
     
 
-    model = T5ForConditionalGeneration.from_pretrained(args.model_name_or_path)
+    #The following are need when training T5-base (i.e., no pre-training strategy)
+    t5_config = T5Config(decoder_start_token_id=tokenizer.convert_tokens_to_ids(['<pad>'])[0])
+    t5_config.d_model=768
+    t5_config.d_ff=3072
+    t5_config.d_kv=64
+    t5_config.num_heads=12
+    t5_config.num_layers=12
+    t5_config.num_decoder_layers=12
+    t5_config.eos_token_id=2
+    t5_config.n_positions=512
+    t5_config.torch_dtype="float32"
+    t5_config.bos_token_id=1
+    t5_config.gradient_checkpointing=False
+    t5_config.output_past=True
+    model = T5ForConditionalGeneration(config=t5_config)
+    
+    #model = T5ForConditionalGeneration.from_pretrained(args.model_name_or_path)
 
     model.resize_token_embeddings(len(tokenizer))
 
@@ -393,8 +409,8 @@ def main():
     if args.do_train:
         #train_data_whole = datasets.load_dataset("MickyMike/cvefixes_bigvul", split="train")
         #df = pd.DataFrame({"source": train_data_whole["source"], "target": train_data_whole["target"]})
-        train_data = pd.read_csv('data_cleaned/with-cwe/train_cwe_name.csv')
-        val_data = pd.read_csv('data_cleaned/with-cwe/eval_cwe_name.csv')
+        train_data = pd.read_csv('../data_cleaned/with-cwe/train_cwe_name.csv')
+        val_data = pd.read_csv('../data_cleaned/with-cwe/eval_cwe_name.csv')
         #train_data, val_data = train_test_split(df, test_size=0.1238, random_state=42)
         train_dataset = TextDataset(tokenizer, args, train_data, val_data, file_type='train')
         eval_dataset = TextDataset(tokenizer, args, train_data, val_data, file_type='eval')

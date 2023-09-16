@@ -91,6 +91,7 @@ python3.9 vulrepair_main_prompt.py
         --tokenizer_name=Salesforce/codet5-base
         --model_name_or_path=Salesforce/codet5-base
         --do_test
+        --num_beams 1 #change to let the model suggests more patches
         --prompt_number=1  #change this parameter to experiment with a different templates {1-5}
         --soft_prompt      #this parameter can be factored out when running prompt-tuning using hard/discrete prompt templates
         --encoder_block_size 512
