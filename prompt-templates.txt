@@ -1,0 +1,11 @@
+Below are shown the five different prompt templates used for our analysis:
+
+(1) <CWE_NAME> {cwe_name} </CWE_NAME> Generate a patch for this vulnerable code {vulnerable_code} as follows: {patch}
+(2) Generate a patch for this vulnerable code {vulnerable_code} as follows: {patch}
+(3) This vulnerable code {vulnerable_code} is fixed by: {patch}
+(4) Patch the following vulnerable code {vulnerablecode} with: {patch}
+(5) This text <CWE_NAME> {cwe_name} </CWE_NAME> describes the vulnerable code {vulnerable_code} fixed by: {patch}
+
+More in detail, a prompt template comprises a concise statement outlining the need for patching the code, accompanied by the {vulnerable_code} snippet and its corresponding {patch}. Additionally, we define two more elaborate templates that incorporate details extracted from CWE, specifically the vulnerability impacting the vulnerable code. Note that the information regarding CWE, i.e., {cwe_name}, is conveyed employing the <CWE_NAME> tag to highlight its importance.
+
+ 
